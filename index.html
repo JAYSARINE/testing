@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Kaspersky License Generator</title>
+    <title>Kaspersky Antivirus Code Generator</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -21,44 +21,82 @@
             box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
             text-align: center;
         }
-        h2 {
+        h1 {
             color: #333;
         }
-        form {
-            margin-top: 20px;
-        }
-        input[type="password"] {
-            padding: 10px;
-            width: 100%;
-            margin-bottom: 20px;
-            border-radius: 5px;
-            border: 1px solid #ccc;
-            box-sizing: border-box;
-        }
-        button[type="submit"] {
+        button {
             padding: 10px 20px;
-            background-color: #4CAF50;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
             font-size: 16px;
-            transition: background-color 0.3s;
+            background-color: #4CAF50;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-top: 10px;
         }
-        button[type="submit"]:hover {
+        button:hover {
             background-color: #45a049;
+        }
+        input {
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            width: 100%;
+            margin-bottom: 10px;
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <h2>Kaspersky License Generator</h2>
-        <form>
-            <input type="password" name="password" placeholder="Enter Password" required>
-            <br>
-            <button type="submit">Login</button>
+        <h1>Kaspersky Antivirus Code Generator</h1>
+        <form id="loginForm" style="display: block;">
+            <input type="text" id="username" placeholder="Username" required><br>
+            <input type="password" id="password" placeholder="Password" required><br>
+            <button type="button" onclick="login()">Login</button>
         </form>
-        <p style="color: red;">Incorrect password. Please try again.</p>
+
+        <form id="codeForm" style="display: none;">
+            <button type="button" onclick="generateCode()">Generate License Code</button>
+            <input type="text" id="licenseCode" readonly>
+        </form>
     </div>
+
+    <script>
+        function login() {
+            var username = document.getElementById("username").value;
+            var password = document.getElementById("password").value;
+
+            if (username === "kaspersky" && password === "hackme@112233") {
+                document.getElementById("loginForm").style.display = "none";
+                document.getElementById("codeForm").style.display = "block";
+            } else {
+                alert("Invalid username or password. Please try again.");
+            }
+        }
+
+        function generateCode() {
+            var licenseCode = generateKasperskyCode();
+            document.getElementById("licenseCode").value = licenseCode;
+        }
+
+        function generateKasperskyCode() {
+            var code = "";
+            code += generateRandomString(5) + "-";
+            code += generateRandomString(5) + "-";
+            code += generateRandomString(5) + "-";
+            code += generateRandomString(5);
+            return code;
+        }
+
+        function generateRandomString(length) {
+            var characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+            var result = '';
+            for (var i = 0; i < length; i++) {
+                result += characters.charAt(Math.floor(Math.random() * characters.length));
+            }
+            return result;
+        }
+    </script>
 </body>
 </html>
